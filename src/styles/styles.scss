@@ -1,0 +1,313 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+	padding: 0%;
+	margin: 0%;
+	box-sizing: border-box;
+	font-family: "Poppins", sans-serif;
+}
+
+// VARIABLES START
+$color1: #08243b;
+$color2: #606060;
+// VARIABLES END
+
+// GLOBAL START
+html {
+	width: 100%;
+	font-size: 100%;
+	overflow-x: hidden;
+	scroll-behavior: auto !important;
+}
+@media screen and (max-width: 992px) {
+	html {
+		font-size: 100%;
+	}
+}
+@media screen and (max-width: 668px) {
+	html {
+		font-size: 92%;
+	}
+}
+@media screen and (max-width: 575px) {
+	html {
+		font-size: 88%;
+	}
+}
+@media screen and (max-width: 475px) {
+	html {
+		font-size: 84%;
+	}
+}
+@media screen and (max-width: 380px) {
+	html {
+		font-size: 80%;
+	}
+}
+@media screen and (max-width: 280px) {
+	html {
+		font-size: 76%;
+	}
+}
+
+.f8 {
+	font-size: 0.5rem;
+}
+
+.f10 {
+	font-size: 0.625rem;
+}
+
+.f12 {
+	font-size: 0.75rem;
+}
+
+.f14 {
+	font-size: 0.875rem;
+}
+
+.f15 {
+	font-size: 0.938rem;
+}
+
+.f16 {
+	font-size: 1rem;
+}
+
+.f18 {
+	font-size: 1.125rem;
+}
+
+.f20 {
+	font-size: 1.25rem;
+}
+
+.f22 {
+	font-size: 1.375rem;
+}
+
+.f24 {
+	font-size: 1.5rem;
+}
+
+.f34 {
+	font-size: 2.125rem;
+}
+
+.f30 {
+	font-size: 1.875rem;
+}
+
+.f35 {
+	font-size: 2.125rem;
+	line-height: 57px;
+}
+
+.f50 {
+	font-size: 3.125rem;
+	line-height: 65px;
+}
+
+.f64 {
+	font-size: 4rem;
+	line-height: 71px;
+}
+
+.fw400 {
+	font-weight: 400;
+}
+
+.fw500 {
+	font-weight: 500;
+}
+
+.fw600 {
+	font-weight: 600;
+}
+
+.fw700 {
+	font-weight: 700;
+}
+
+.fw800 {
+	font-weight: 800;
+}
+
+.fw900 {
+	font-weight: 900;
+}
+
+// COLORS
+.color1 {
+	color: $color1;
+}
+
+.color2 {
+	color: $color2;
+}
+
+.color3 {
+	color: #2dc095;
+}
+
+body {
+	background: linear-gradient(
+		40deg,
+		#33d18a34,
+		#24a9a934 17%,
+		#28b2a02c 34%,
+		#33d18a28
+	);
+	background-size: 300% 100%;
+	animation: progress-animation 2s linear infinite;
+}
+
+@keyframes progress-animation {
+	0% {
+		background-position: 100%;
+	}
+	100% {
+		background-position: 0;
+	}
+}
+
+// FORM CONTAINER START
+.form_container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: calc(100vh - 40px);
+
+	.logo_container {
+		position: absolute;
+		top: 1rem;
+		left: 1rem;
+		height: 70px;
+		width: auto;
+	}
+
+	.form_inner_container {
+		max-width: 500px;
+		margin-left: auto;
+		margin-right: auto;
+
+		.stepper_header {
+			.progress {
+				width: 100%;
+				max-width: 100%;
+				height: 8px;
+				background: #e1e4e8;
+				border-radius: 50px;
+				overflow: hidden;
+				transition: 0.6s;
+			}
+			.progress-bar {
+				display: block;
+				height: 100%;
+				background: linear-gradient(
+					90deg,
+					#ffd33d,
+					#2dc095 17%,
+					#b34bff 34%,
+					#00c3cc 51%,
+					#ffd33d 68%,
+					#33d18a 85%,
+					#b34bff
+				);
+				background-size: 300% 100%;
+				animation: progress-animation 2s linear infinite;
+			}
+			@keyframes progress-animation {
+				0% {
+					background-position: 100%;
+				}
+				100% {
+					background-position: 0;
+				}
+			}
+
+			button {
+				background: linear-gradient(
+					125deg,
+					#24a6a8 17%,
+					rgb(51, 209, 137) 100%
+				);
+				color: #fff;
+				border: 0;
+				border-radius: 50px;
+				height: 35px;
+				box-shadow: 1px 1px 4px rgb(51, 209, 137);
+
+				&:focus {
+					outline: none;
+				}
+			}
+		}
+
+		.form_body {
+			.step_one {
+				padding: 2rem 0rem;
+
+				.bottom_line {
+					position: relative;
+
+					&::after {
+						content: "";
+						position: absolute;
+						width: 100%;
+						height: 3px;
+						left: 0%;
+						bottom: 12%;
+						border-radius: 50px;
+						background: linear-gradient(
+							90deg,
+							#ffd33d,
+							#2dc095 17%,
+							#b34bff 34%,
+							#00c3cc 51%,
+							#ffd33d 68%,
+							#33d18a 85%,
+							#b34bff
+						);
+						background-size: 300% 100%;
+						animation: progress-animation 2s linear infinite;
+					}
+
+					@keyframes progress-animation {
+						0% {
+							background-position: 100%;
+						}
+						100% {
+							background-position: 0;
+						}
+					}
+				}
+
+				.animation {
+					margin: -11rem 0rem -6rem 0rem;
+					position: relative;
+				}
+
+				button {
+					background: linear-gradient(
+						125deg,
+						#24a6a8 17%,
+						rgb(51, 209, 137) 100%
+					);
+					color: #fff;
+					border: 0;
+					border-radius: 5px;
+					height: 38px;
+					box-shadow: 1px 1px 4px rgb(51, 209, 137);
+					width: 100%;
+					letter-spacing: 1px;
+					font-weight: 500;
+					cursor: pointer;
+					position: absolute;
+					bottom: 10%;
+				}
+			}
+		}
+	}
+}
+// FORM CONTAINER END
