@@ -50,6 +50,10 @@ html {
   }
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 .f8 {
   font-size: 0.5rem;
 }
@@ -147,6 +151,34 @@ html {
 
 .color3 {
   color: #2dc095;
+}
+
+.active_option {
+  background: -webkit-gradient(linear, left top, right top, from(#ffd33d), color-stop(17%, #2dc095), color-stop(34%, #b34bff), color-stop(51%, #00c3cc), color-stop(68%, #ffd33d), color-stop(85%, #33d18a), to(#b34bff)) !important;
+  background: linear-gradient(90deg, #ffd33d, #2dc095 17%, #b34bff 34%, #00c3cc 51%, #ffd33d 68%, #33d18a 85%, #b34bff) !important;
+  background-size: 300% 100% !important;
+  -webkit-box-shadow: 1px 1px 4px #2fdf90;
+          box-shadow: 1px 1px 4px #2fdf90;
+  -webkit-animation: progress-animation2 2s linear infinite;
+          animation: progress-animation2 2s linear infinite;
+}
+
+@-webkit-keyframes progress-animation2 {
+  0% {
+    background-position: 100%;
+  }
+  100% {
+    background-position: 0;
+  }
+}
+
+@keyframes progress-animation2 {
+  0% {
+    background-position: 100%;
+  }
+  100% {
+    background-position: 0;
+  }
 }
 
 body {
@@ -296,5 +328,13 @@ body {
   cursor: pointer;
   position: absolute;
   bottom: 10%;
+}
+
+.form_container .radio_option {
+  background: linear-gradient(125deg, #24a6a89a 17%, rgba(51, 209, 138, 0.603) 100%);
+  margin: 0.6rem 0rem;
+  padding: 0.3rem 0rem;
+  color: #fff;
+  border-radius: 6px;
 }
 /*# sourceMappingURL=styles.css.map */

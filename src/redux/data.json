@@ -1,0 +1,88 @@
+{
+	"Questions": [
+		{
+			"id": "1",
+			"category": "single",
+			"question": "What is your gender?",
+			"options": ["Male", "Female", "Choose not to say"]
+		},
+		{
+			"id": "2",
+			"category": "single",
+			"question": "How old are you?",
+			"options": ["19 or younger", "20s", "30s", "40s", "50s", "60+"]
+		},
+		{
+			"id": "3",
+			"category": "single",
+			"question": "In the past month, how regularly have you been exercising each week?",
+			"hint": "At home, outdoors, in a gym or at a studio ",
+			"options": ["5-7 days", "3-4 days", "1-2 days", "0-1 days"]
+		},
+		{
+			"id": "4",
+			"category": "single",
+			"question": "How often do you want to workout?",
+			"hint": "Your coach will take this into consideration for your training plan",
+			"options": ["5+ days", "3-4 days", "1-2 days", "0-1 days"]
+		},
+		{
+			"id": "5",
+			"category": "single",
+			"question": "What is your key fitness goal?",
+			"hint": "Don’t worry, you can always share your other goals with your coach if you have any.",
+			"options": [
+				"Get Leaner",
+				"Get Stronger",
+				"Get Active Again",
+				"Stretch & Recover",
+				"Sweat and have fun",
+				"Improve sports performance"
+			]
+		},
+		{
+			"id": "6",
+			"category": "multiple",
+			"question": "Are you looking for any specific trainer specializations?",
+			"hint": "Choose all that apply.",
+			"options": [
+				"Active Recovery",
+				"Sports Psychology",
+				"Strength & Conditioning",
+				"Health & Wellness Coaching",
+				"Sport Performance",
+				"Bodyweight Training",
+				"Body transformation",
+				"HIIT",
+				"Weight Lifting",
+				"Yoga / Pilates"
+			]
+		},
+		{
+			"id": "7",
+			"category": "single",
+			"question": "Do you have a preference for the gender of your coach?",
+			"hint": null,
+			"options": ["Male", "Female", "No preference"]
+		},
+		{
+			"id": "8",
+			"category": "multiple",
+			"question": "How would you like your coach to be?",
+			"hint": "Choose all that apply.",
+			"options": [
+				"High-energy",
+				"Knows when to give me tough love",
+				"Calm, cool and collected",
+				"Always positive",
+				"Drill sergeant",
+				"Analytical and results-driven",
+				"Strictly business",
+				"Goes the extra mile to personalize my workouts",
+				"Science based routine",
+				"Ready to respond only when required",
+				"Constantly pushing you"
+			]
+		}
+	]
+}

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import lottie from "lottie-web";
 
-const StepOne = () => {
+const StepOne = ({ nextFunc }) => {
 	const container = useRef(null);
 
 	useEffect(() => {
@@ -24,12 +24,11 @@ const StepOne = () => {
 			</h2>
 			<h6 className="lh-lg">
 				We are excited to kick off this journey together with you by finding the
-				right coach for your needs.{" "}
+				right coach for your needs. The road to your fitness goals starts now!
 			</h6>
 			<div className="animation">
 				<div ref={container}></div>
-
-				<button>Begin</button>
+				<button onClick={nextFunc}>Begin</button>
 			</div>
 		</div>
 	);

@@ -5,10 +5,33 @@ import { useState } from "react";
 
 // STEPS
 import StepOne from "./components/StepOne";
+import { connect } from "react-redux";
+import { selectedOptionsFunc } from "./redux/action";
 
-function App() {
+// QUESTION
+import QuestionStep from "./components/QuestionStep";
+
+function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
+	const [selectedOption, setSelectedOption] = useState([]);
+
+	let activeStep = JSON.parse(localStorage.getItem("currentStep"));
+
 	// STEPS DATA
-	const stepsData = [<StepOne />];
+	const stepsData = [<StepOne nextFunc={nextFunc} />];
+
+	for (let i = 0; i < questionsData.length; i++) {
+		stepsData.push(
+			<QuestionStep
+				selectedOption={selectedOption}
+				setSelectedOption={setSelectedOption}
+				id={questionsData[i].id}
+				question={questionsData[i].question}
+				options={questionsData[i].options}
+				category={questionsData[i].category}
+				hint={questionsData[i].hint}
+			/>
+		);
+	}
 
 	const totalSteps = stepsData.length;
 	let perStepPercentage = 100 / totalSteps;
@@ -18,21 +41,39 @@ function App() {
 	});
 
 	// STATE DESTRUCTURE
-	const { step, precentage } = currentStep;
+	// const { step, precentage } = currentStep;
+	const { step, precentage } =
+		(activeStep !== null && activeStep) || currentStep;
 
 	const previousFunc = () => {
-		setCurrentStep({
+		setSelectedOption(selectedOptions);
+
+		let updatedStep = {
 			precentage: precentage - perStepPercentage,
 			step: step - 1,
-		});
+		};
+
+		setCurrentStep(updatedStep);
+
+		localStorage.setItem("currentStep", JSON.stringify(updatedStep));
 	};
 
-	const nextFunc = () => {
-		setCurrentStep({
-			precentage: precentage + perStepPercentage,
-			step: step + 1,
-		});
-	};
+	function nextFunc(data) {
+		if (selectedOption.length) {
+			selectedOptionsFunc(data);
+			setSelectedOption([]);
+		}
+
+		if (step !== stepsData.length + 1) {
+			let updatedStep = {
+				precentage: precentage + perStepPercentage,
+				step: step + 1,
+			};
+
+			setCurrentStep(updatedStep);
+			localStorage.setItem("currentStep", JSON.stringify(updatedStep));
+		}
+	}
 
 	return (
 		<div className="form_container my-3">
@@ -51,7 +92,7 @@ function App() {
 							</button>
 							<div className="col-8">
 								<div
-									class="progress"
+									className="progress"
 									style={{
 										boxShadow:
 											(precentage !== 0 && "1px 1px 4px rgb(51, 209, 137)") ||
@@ -59,19 +100,25 @@ function App() {
 									}}
 								>
 									<span
-										class="progress-bar"
+										className="progress-bar"
 										style={{ width: `${precentage}%` }}
 									></span>
 								</div>
 							</div>
-							<button onClick={nextFunc} className="col-2">
-								Next
-							</button>
+							{(selectedOption.length && (
+								<button
+									onClick={() => nextFunc(selectedOption)}
+									className="col-2"
+								>
+									Next
+								</button>
+							)) ||
+								""}
 						</div>
 					)}
 					<div className="form_body mt-4">
 						{stepsData.map((item, i) => {
-							return step === i + 1 && item;
+							return <div key={i}>{step === i + 1 && item}</div>;
 						})}
 					</div>
 					{/* STEPPER HEADER END */}
@@ -82,4 +129,18 @@ function App() {
 	);
 }
 
-export default App;
+const mapStatetoProps = (state) => {
+	return {
+		questionsData: state.Reducer.questionsData,
+		selectedOptions: state.Reducer.selectedOptions,
+	};
+};
+const mapDispatchtoProps = (dispatch) => {
+	return {
+		selectedOptionsFunc: function (data) {
+			dispatch(selectedOptionsFunc(data));
+		},
+	};
+};
+
+export default connect(mapStatetoProps, mapDispatchtoProps)(App);
