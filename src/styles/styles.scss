@@ -154,6 +154,11 @@ html {
 	color: #2dc095;
 }
 
+.themeBtn {
+	background: linear-gradient(125deg, #24a6a8 17%, rgb(51, 209, 137) 100%);
+	box-shadow: 1px 1px 4px rgb(51, 209, 137);
+}
+
 .active_option {
 	background: linear-gradient(
 		90deg,
@@ -352,3 +357,99 @@ body {
 	}
 }
 // FORM CONTAINER END
+
+// REULTS CONTAINER START
+.results_container {
+	max-width: 900px;
+	margin-left: auto;
+	margin-right: auto;
+
+	.coach_card {
+		img {
+			max-width: 200px;
+			max-height: 200px;
+			border-radius: 50%;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+}
+// REULTS CONTAINER END
+
+// DETAIL START
+.pop-up-container {
+	position: fixed;
+	left: 0%;
+	right: 0%;
+	bottom: 0%;
+	top: 0%;
+	width: 100%;
+	height: 100vh;
+	background: linear-gradient(
+		125deg,
+		#24a6a89a 17%,
+		rgba(51, 209, 138, 0.603) 100%
+	);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 10;
+	margin-top: 0px !important;
+
+	.inner-pop-up {
+		background-color: #fff;
+		min-width: 900px;
+		max-width: 500px;
+		border-radius: 20px;
+
+		.cross {
+			position: absolute;
+			right: 0%;
+			top: 0%;
+		}
+
+		img {
+			max-width: 150px;
+			max-height: 150px;
+			object-fit: cover;
+			border-radius: 50%;
+		}
+	}
+}
+// DETAIL END
+
+// PAYMENT START
+.payment_Container {
+	margin: 3rem 0rem;
+	max-width: 900px;
+	margin-left: auto;
+	margin-right: auto;
+
+	img {
+		max-width: 150px;
+		max-height: 150px;
+		object-fit: cover;
+		border-radius: 10px;
+	}
+
+	.btn_container {
+		max-width: 400px;
+		margin-left: auto;
+		margin-right: auto;
+
+		button {
+			width: 100%;
+		}
+	}
+}
+// PAYMENT END
+
+// MEDIA START
+@media screen and (max-width: 1000px) {
+	.pop-up-container {
+		.inner-pop-up {
+			min-width: calc(100vw - 100px);
+		}
+	}
+}
+// MEDIA END

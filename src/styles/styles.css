@@ -153,6 +153,12 @@ html {
   color: #2dc095;
 }
 
+.themeBtn {
+  background: linear-gradient(125deg, #24a6a8 17%, #33d189 100%);
+  -webkit-box-shadow: 1px 1px 4px #33d189;
+          box-shadow: 1px 1px 4px #33d189;
+}
+
 .active_option {
   background: -webkit-gradient(linear, left top, right top, from(#ffd33d), color-stop(17%, #2dc095), color-stop(34%, #b34bff), color-stop(51%, #00c3cc), color-stop(68%, #ffd33d), color-stop(85%, #33d18a), to(#b34bff)) !important;
   background: linear-gradient(90deg, #ffd33d, #2dc095 17%, #b34bff 34%, #00c3cc 51%, #ffd33d 68%, #33d18a 85%, #b34bff) !important;
@@ -336,5 +342,93 @@ body {
   padding: 0.3rem 0rem;
   color: #fff;
   border-radius: 6px;
+}
+
+.results_container {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.results_container .coach_card img {
+  max-width: 200px;
+  max-height: 200px;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pop-up-container {
+  position: fixed;
+  left: 0%;
+  right: 0%;
+  bottom: 0%;
+  top: 0%;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(125deg, #24a6a89a 17%, rgba(51, 209, 138, 0.603) 100%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 10;
+  margin-top: 0px !important;
+}
+
+.pop-up-container .inner-pop-up {
+  background-color: #fff;
+  min-width: 900px;
+  max-width: 500px;
+  border-radius: 20px;
+}
+
+.pop-up-container .inner-pop-up .cross {
+  position: absolute;
+  right: 0%;
+  top: 0%;
+}
+
+.pop-up-container .inner-pop-up img {
+  max-width: 150px;
+  max-height: 150px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+
+.payment_Container {
+  margin: 3rem 0rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.payment_Container img {
+  max-width: 150px;
+  max-height: 150px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 10px;
+}
+
+.payment_Container .btn_container {
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.payment_Container .btn_container button {
+  width: 100%;
+}
+
+@media screen and (max-width: 1000px) {
+  .pop-up-container .inner-pop-up {
+    min-width: calc(100vw - 100px);
+  }
 }
 /*# sourceMappingURL=styles.css.map */
