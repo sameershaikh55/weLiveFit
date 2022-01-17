@@ -453,11 +453,60 @@ body {
 }
 // PAYMENT END
 
+// COUNTER START
+.counter_container {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 3rem;
+	-webkit-animation: blink-1 1s ease-in-out 0.2s infinite both;
+	animation: blink-1 1s ease-in-out 0.2s infinite both;
+
+	.countUp::after {
+		content: "%";
+	}
+}
+
+@-webkit-keyframes blink-1 {
+	0%,
+	50%,
+	100% {
+		opacity: 1;
+	}
+	25%,
+	75% {
+		opacity: 0;
+	}
+}
+@keyframes blink-1 {
+	0%,
+	50%,
+	100% {
+		opacity: 1;
+	}
+	25%,
+	75% {
+		opacity: 0;
+	}
+}
+
+// COUNTER END
+
 // MEDIA START
 @media screen and (max-width: 1000px) {
 	.pop-up-container {
 		.inner-pop-up {
 			min-width: calc(100vw - 100px);
+		}
+	}
+}
+
+@media screen and (max-height: 800px) {
+	.pop-up-container {
+		.inner-pop-up {
+			max-height: calc(100vh - 100px);
+			overflow-y: auto;
 		}
 	}
 }

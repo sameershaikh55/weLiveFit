@@ -4,6 +4,7 @@ import "./styles/styles.css";
 import { useEffect, useState } from "react";
 import { BiLeftArrowAlt } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
+import CountUp from "react-countup";
 
 // IMPORTING ANIMATIONS
 import AOS from "aos";
@@ -28,6 +29,7 @@ function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 	const [coaches, setCoaches] = useState([]);
 	const [selectedOption, setSelectedOption] = useState([]);
 	const [loadMore, setLoadMore] = useState(false);
+	const [showResults, setShowResults] = useState(false);
 
 	let selectedData = JSON.parse(localStorage.getItem("selectedData"));
 
@@ -131,9 +133,24 @@ function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 	let orderedCoaches = JSON.parse(localStorage.getItem("orderedCoaches"));
 
 	function goBackFunc() {
+		window.location.reload(false);
 		navigate("/", { replace: true });
 		localStorage.clear();
 	}
+
+	// COUNT UP
+	const [loading, setLoading] = useState(false);
+	const onStart = () => {
+		setLoading(true);
+	};
+	const onEnd = () => {
+		setLoading(false);
+		setShowResults(true);
+	};
+	const containerProps = {
+		"aria-busy": loading,
+		className: "countUp",
+	};
 
 	return (
 		<>
@@ -190,32 +207,49 @@ function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 					</div>
 				</div>
 			)) || (
-				<div className="results_container py-5">
-					<button
-						onClick={goBackFunc}
-						className="border-0 rounded-pill py-2 text-white themeBtn px-4 d-flex justify-content-center align-items-center"
-					>
-						<BiLeftArrowAlt /> Back
-					</button>
-					<h2 className="text-center mb-4">
-						Here are your recommended coaches.
-					</h2>
-					<CoachesResults
-						orderedCoaches={
-							(loadMore && orderedCoaches) || orderedCoaches.slice(0, 3)
-						}
-					/>
-					{!loadMore && (
-						<div className="d-flex justify-content-center mt-4">
+				<>
+					{(showResults && (
+						<div className="results_container py-5">
 							<button
-								onClick={() => setLoadMore(true)}
-								className="border-0 py-2 rounded-3 themeBtn text-white px-4"
+								onClick={goBackFunc}
+								className="border-0 rounded-pill py-2 text-white themeBtn px-4 d-flex justify-content-center align-items-center"
 							>
-								Load more
+								<BiLeftArrowAlt /> Back
 							</button>
+							<h2 className="text-center mb-4">
+								Here are your recommended coaches.
+							</h2>
+							<CoachesResults
+								orderedCoaches={
+									(loadMore && orderedCoaches) || orderedCoaches.slice(0, 3)
+								}
+							/>
+							{!loadMore && (
+								<div className="d-flex justify-content-center mt-4">
+									<button
+										onClick={() => setLoadMore(true)}
+										className="border-0 py-2 rounded-3 themeBtn text-white px-4"
+									>
+										Load more
+									</button>
+								</div>
+							)}
+						</div>
+					)) || (
+						<div className="counter_container d-flex flex-column">
+							<h2 className="text-center">
+								Hold tight, we're finding your <br /> perfect coach!
+							</h2>
+							<CountUp
+								end={100}
+								duration="5"
+								onStart={onStart}
+								onEnd={onEnd}
+								containerProps={containerProps}
+							/>
 						</div>
 					)}
-				</div>
+				</>
 			)}
 		</>
 	);
