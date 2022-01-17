@@ -26,10 +26,15 @@ import CoachesResults from "./components/CoachesResults";
 function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 	const navigate = useNavigate();
 
+	// GETTING LOCATION
+	let storedLocation = JSON.parse(localStorage.getItem("storedLocation"));
+
 	const [coaches, setCoaches] = useState([]);
 	const [selectedOption, setSelectedOption] = useState([]);
 	const [loadMore, setLoadMore] = useState(false);
-	const [showResults, setShowResults] = useState(false);
+	const [showResults, setShowResults] = useState(
+		(storedLocation === "payment" && false) || true
+	);
 
 	let selectedData = JSON.parse(localStorage.getItem("selectedData"));
 
@@ -127,7 +132,6 @@ function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 		coaches.sort((a, b) => b.specializations.length - a.specializations.length);
 
 		localStorage.setItem("orderedCoaches", JSON.stringify(coaches));
-		console.log(coaches);
 	}
 
 	let orderedCoaches = JSON.parse(localStorage.getItem("orderedCoaches"));
@@ -187,6 +191,7 @@ function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 									</div>
 									{(selectedOption.length && (
 										<button
+											data-aos="fade-left"
 											onClick={() => nextFunc(selectedOption)}
 											className="col-2"
 										>

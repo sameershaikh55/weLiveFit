@@ -1,15 +1,18 @@
 import React from "react";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { BiLeftArrowAlt } from "react-icons/bi";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 
 const Payment = () => {
 	const { id } = useParams();
 	const navigate = useNavigate();
+	const location = useLocation().pathname.split("/")[1];
+	localStorage.setItem("storedLocation", JSON.stringify(location));
 
 	let orderedCoaches = JSON.parse(localStorage.getItem("orderedCoaches"));
 
-	const singleCoach = orderedCoaches.filter((prev) => prev.id === id);
+	const singleCoach =
+		orderedCoaches.length && orderedCoaches.filter((prev) => prev.id === id);
 
 	const { name, picture, speciality } = singleCoach[0];
 
