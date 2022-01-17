@@ -33,7 +33,7 @@ function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 	const [selectedOption, setSelectedOption] = useState([]);
 	const [loadMore, setLoadMore] = useState(false);
 	const [showResults, setShowResults] = useState(
-		(storedLocation === "payment" && false) || true
+		(storedLocation === "payment" && true) || false
 	);
 
 	let selectedData = JSON.parse(localStorage.getItem("selectedData"));
