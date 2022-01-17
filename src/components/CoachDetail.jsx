@@ -1,6 +1,18 @@
 import React from "react";
 
-const CoachDetail = ({ setDetail }) => {
+const CoachDetail = ({ detail, setDetail }) => {
+	const {
+		name,
+		picture,
+		speciality,
+		description,
+		experience,
+		loves,
+		specialties,
+	} = detail;
+
+	let nameBreak = name.split(" ");
+
 	return (
 		<div className="pop-up-container" data-aos="fade">
 			<div className="inner-pop-up p-4" data-aos="fade-up">
@@ -20,19 +32,11 @@ const CoachDetail = ({ setDetail }) => {
 
 				<div className="row align-items-center">
 					<div className="col-3 d-flex justify-content-center">
-						<img
-							className="w-100"
-							src="https://freerangestock.com/sample/116135/handsome-man-avatar-.jpg"
-							alt=""
-						/>{" "}
+						<img className="w-100" src={picture} alt={name} />{" "}
 					</div>
 					<div className="col-9">
-						<h4>Lorem ipsum dolor sit amet.</h4>
-						<p className="mb-0">
-							Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus
-							maxime amet itaque officia vero fugiat in pariatur, similique ea.
-							Aspernatur.
-						</p>
+						<h4>{name}</h4>
+						<p className="mb-0">{speciality}</p>
 					</div>
 				</div>
 				<div className="mt-4">
@@ -40,45 +44,31 @@ const CoachDetail = ({ setDetail }) => {
 						<div className="col-4">
 							<h5>Experience</h5>
 							<ul>
-								{[1, 1, 1].map((prev, i) => {
-									return <li key={i}>7 years experience</li>;
+								{experience.map((prev, i) => {
+									return <li key={i}>{prev}</li>;
 								})}
 							</ul>
 						</div>
 						<div className="col-4">
 							<h5>Specialties</h5>
 							<ul>
-								{[1, 1, 1].map((prev, i) => {
-									return <li key={i}>7 years experience</li>;
+								{specialties.map((prev, i) => {
+									return <li key={i}>{prev}</li>;
 								})}
 							</ul>
 						</div>
 						<div className="col-4">
 							<h5>Loves</h5>
 							<ul>
-								{[1, 1, 1].map((prev, i) => {
-									return <li key={i}>7 years experience</li>;
+								{loves.map((prev, i) => {
+									return <li key={i}>{prev}</li>;
 								})}
 							</ul>
 						</div>
 
 						<div className="mt-4">
-							<h5>About Jared</h5>
-							<p>
-								Jared's enthusiasm for health began with his mother’s type 2
-								diabetes diagnosis just as he was starting wrestling in
-								highschool, which he continued to compete in throughout college.
-								Both of these events motivated him to get his bachelor's degree
-								in Exercise Science and Human Performance. From there, it was a
-								smooth transition into his personal training career where he has
-								helped others with similar issues while also getting to coach
-								wrestling. Jared has experience working with 7 to 65 years olds
-								of all fitness levels. He really enjoys coaching clients on how
-								to reach their short term and long term goals through small
-								habitual changes. Jared empowers all of his clients to have the
-								ability to take control of their life while moving towards a
-								long and healthy life.
-							</p>
+							<h5>About {nameBreak[0]}</h5>
+							<p dangerouslySetInnerHTML={{ __html: description }}></p>
 						</div>
 					</div>
 				</div>

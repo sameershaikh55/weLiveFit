@@ -1,29 +1,38 @@
 import React from "react";
 import { IoIosArrowRoundForward } from "react-icons/io";
+import { BiLeftArrowAlt } from "react-icons/bi";
+import { useParams, useNavigate } from "react-router-dom";
 
 const Payment = () => {
+	const { id } = useParams();
+	const navigate = useNavigate();
+
+	let orderedCoaches = JSON.parse(localStorage.getItem("orderedCoaches"));
+
+	const singleCoach = orderedCoaches.filter((prev) => prev.id === id);
+
+	const { name, picture, speciality } = singleCoach[0];
+
 	return (
 		<div className="payment_Container">
 			<div className="container-fluid">
-				<div className="row">
+				<button
+					onClick={() => navigate(-1)}
+					className="border-0 rounded-pill py-2 text-white themeBtn px-4 d-flex justify-content-center align-items-center"
+				>
+					<BiLeftArrowAlt /> Back
+				</button>
+				<div className="row mt-4">
 					<div className="col-12">
 						<h4>YOUR COACH</h4>
-						<div className="mt-4 themeBtn py-3 rounded-3 px-4 px-md-0">
+						<div className="themeBtn py-3 rounded-3 px-4 px-md-0">
 							<div className="row align-items-center gy-3">
 								<div className="col-3 d-flex justify-content-center">
-									<img
-										className="w-100"
-										src="https://freerangestock.com/sample/116135/handsome-man-avatar-.jpg"
-										alt=""
-									/>{" "}
+									<img className="w-100" src={picture} alt={name} />{" "}
 								</div>
 								<div className="col-12 col-md-9 ps-md-0 text-white">
-									<h4>Lorem ipsum dolor sit amet.</h4>
-									<p className="mb-0">
-										Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-										Possimus maxime amet itaque officia vero fugiat in pariatur,
-										similique ea. Aspernatur.
-									</p>
+									<h4>{name}</h4>
+									<p className="mb-0">{speciality}</p>
 								</div>
 							</div>
 						</div>
@@ -37,8 +46,7 @@ const Payment = () => {
 											<span className="ms-2 mb-1 fw800">/MO</span>
 										</div>
 										<p>
-											Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-											At, impedit.
+											Join risk free for 30 days with a money back guarantee
 										</p>
 									</div>
 									<div className="col-12 col-md-7">

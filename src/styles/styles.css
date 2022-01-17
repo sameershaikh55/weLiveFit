@@ -350,12 +350,26 @@ body {
   margin-right: auto;
 }
 
+.results_container .coach_card {
+  min-height: 1px;
+  height: 100%;
+  -webkit-transition: 0.8s;
+  transition: 0.8s;
+}
+
 .results_container .coach_card img {
   max-width: 200px;
   max-height: 200px;
   border-radius: 50%;
   margin-left: auto;
   margin-right: auto;
+}
+
+.results_container .coach_card:hover {
+  -webkit-box-shadow: 1px 1px 5px #33d189;
+          box-shadow: 1px 1px 5px #33d189;
+  -webkit-transform: translateY(-10px);
+          transform: translateY(-10px);
 }
 
 .pop-up-container {

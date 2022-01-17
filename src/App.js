@@ -2,13 +2,16 @@ import logo from "./assets/logo.png";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./styles/styles.css";
 import { useEffect, useState } from "react";
+import { BiLeftArrowAlt } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
 
 // IMPORTING ANIMATIONS
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 // IMPORTING FIREBASE
-// import { db } from "./firebase";
+import { db } from "./firebase";
+import { collection, getDocs } from "firebase/firestore";
 
 // STEPS
 import StepOne from "./components/StepOne";
@@ -20,8 +23,15 @@ import QuestionStep from "./components/QuestionStep";
 import CoachesResults from "./components/CoachesResults";
 
 function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
-	// const [coaches, setCoaches] = useState([]);
+	const navigate = useNavigate();
+
+	const [coaches, setCoaches] = useState([]);
 	const [selectedOption, setSelectedOption] = useState([]);
+	const [loadMore, setLoadMore] = useState(false);
+
+	let selectedData = JSON.parse(localStorage.getItem("selectedData"));
+
+	const usersCollectionRef = collection(db, "coaches");
 
 	// // FOR PERCENTAGE
 	useEffect(() => {
@@ -29,18 +39,12 @@ function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 			once: true,
 		});
 
-		// const getPostsFromFirebase = [];
-		// const subscriber = db.collection("coaches").onSnapshot((querySnapshot) => {
-		// 	querySnapshot.forEach((doc) => {
-		// 		getPostsFromFirebase.push({
-		// 			...doc.data(), //spread operator
-		// 			key: doc.id, // `id` given to us by Firebase
-		// 		});
-		// 	});
-		// 	setCoaches(getPostsFromFirebase);
-		// });
-		// 	// return cleanup function
-		// 	return () => subscriber();
+		const getUsers = async () => {
+			const data = await getDocs(usersCollectionRef);
+			setCoaches(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+		};
+
+		getUsers();
 	}, []); // empty dependencies array => useEffect only called once
 
 	let activeStep = JSON.parse(localStorage.getItem("currentStep"));
@@ -104,6 +108,33 @@ function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 		}
 	}
 
+	if (step === 10) {
+		const filteringOptions =
+			selectedData.length && selectedData.map((prev) => prev.option);
+		const filteringSpecializations =
+			coaches.length && coaches.map((prev) => prev.specializations);
+
+		for (let i = 0; i < filteringSpecializations.length; i++) {
+			let orderedCoaches = filteringSpecializations[i].filter((val) =>
+				filteringOptions.includes(val)
+			);
+
+			coaches.push((coaches[i].specializations = orderedCoaches));
+			coaches.pop();
+		}
+		coaches.sort((a, b) => b.specializations.length - a.specializations.length);
+
+		localStorage.setItem("orderedCoaches", JSON.stringify(coaches));
+		console.log(coaches);
+	}
+
+	let orderedCoaches = JSON.parse(localStorage.getItem("orderedCoaches"));
+
+	function goBackFunc() {
+		navigate("/", { replace: true });
+		localStorage.clear();
+	}
+
 	return (
 		<>
 			{(step !== 10 && (
@@ -160,15 +191,30 @@ function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 				</div>
 			)) || (
 				<div className="results_container py-5">
+					<button
+						onClick={goBackFunc}
+						className="border-0 rounded-pill py-2 text-white themeBtn px-4 d-flex justify-content-center align-items-center"
+					>
+						<BiLeftArrowAlt /> Back
+					</button>
 					<h2 className="text-center mb-4">
 						Here are your recommended coaches.
 					</h2>
-					<CoachesResults />
-					<div className="d-flex justify-content-center mt-4">
-						<button className="border-0 py-2 rounded-3 themeBtn text-white px-4">
-							Load more
-						</button>
-					</div>
+					<CoachesResults
+						orderedCoaches={
+							(loadMore && orderedCoaches) || orderedCoaches.slice(0, 3)
+						}
+					/>
+					{!loadMore && (
+						<div className="d-flex justify-content-center mt-4">
+							<button
+								onClick={() => setLoadMore(true)}
+								className="border-0 py-2 rounded-3 themeBtn text-white px-4"
+							>
+								Load more
+							</button>
+						</div>
+					)}
 				</div>
 			)}
 		</>
