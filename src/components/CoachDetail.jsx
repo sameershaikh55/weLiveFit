@@ -58,7 +58,7 @@ const CoachDetail = ({ detail, setDetail }) => {
 							</ul>
 						</div>
 						<div className="col-4">
-							<h5>Loves</h5>
+							<h5>Interests</h5>
 							<ul>
 								{loves.map((prev, i) => {
 									return <li key={i}>{prev}</li>;

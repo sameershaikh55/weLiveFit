@@ -15,6 +15,8 @@ const PopUp = () => {
 	} = useForm();
 
 	const onSubmit = async (data) => {
+		navigate("/", { replace: true });
+
 		const { firstName, lastName, email } = data;
 		const sendingData = {
 			firstName,
@@ -23,7 +25,6 @@ const PopUp = () => {
 		};
 		const collectionRef = collection(db, "leads");
 		await addDoc(collectionRef, sendingData);
-		navigate("/", { replace: true });
 		reset();
 	};
 

@@ -53,7 +53,7 @@ const CoachesResults = ({ orderedCoaches }) => {
 										</button>
 										<Link to={`/payment/${id}`} className="w-100">
 											<button className="py-2 rounded-3 border-0 themeBtn text-white mt-3 w-100">
-												Train with lorem
+												Train with {name.split(" ")[0]}
 											</button>
 										</Link>
 									</div>
