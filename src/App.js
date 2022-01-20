@@ -153,7 +153,7 @@ function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 		setLoading(false);
 		setShowResults(true);
 
-		navigate("/?id='49739773'", { replace: true });
+		navigate("/?id=49739773", { replace: true });
 	};
 	const containerProps = {
 		"aria-busy": loading,
