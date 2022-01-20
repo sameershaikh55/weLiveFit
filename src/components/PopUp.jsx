@@ -15,6 +15,8 @@ const PopUp = () => {
 	} = useForm();
 
 	const onSubmit = async (data) => {
+		localStorage.setItem("information-collected", true);
+
 		navigate("/", { replace: true });
 
 		const { firstName, lastName, email } = data;

@@ -406,10 +406,24 @@ body {
 	margin-top: 0px !important;
 
 	.inner-pop-up {
+		max-height: calc(100vh - 200px);
+		overflow-y: auto;
+		overflow-x: hidden;
 		background-color: #fff;
 		min-width: 900px;
 		max-width: 500px;
 		border-radius: 20px;
+
+		&::-webkit-scrollbar {
+			width: 7px;
+		}
+		&::-webkit-scrollbar-track {
+			background: #f1f1f1;
+		}
+		&::-webkit-scrollbar-thumb {
+			background: rgba(51, 209, 138, 0.603);
+			border-radius: 10px;
+		}
 
 		.cross {
 			position: absolute;

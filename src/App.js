@@ -149,12 +149,19 @@ function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 	const onStart = () => {
 		setLoading(true);
 	};
+
 	const onEnd = () => {
 		setLoading(false);
 		setShowResults(true);
 
-		navigate("/?id=49739773", { replace: true });
+		// INFO FORM CHECK
+		let informationCollected = localStorage.getItem("information-collected");
+
+		if (informationCollected != "true") {
+			navigate("/?id=49739773", { replace: true });
+		}
 	};
+
 	const containerProps = {
 		"aria-busy": loading,
 		className: "countUp",
@@ -225,7 +232,7 @@ function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 							>
 								<BiLeftArrowAlt /> Back
 							</button>
-							<h2 className="text-center mb-4">
+							<h2 className="text-center mb-4 mt-4">
 								Here are your recommended coaches.
 							</h2>
 							<CoachesResults

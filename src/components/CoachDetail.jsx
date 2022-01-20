@@ -41,15 +41,15 @@ const CoachDetail = ({ detail, setDetail }) => {
 				</div>
 				<div className="mt-4">
 					<div className="row">
-						<div className="col-4">
-							<h5>Experience</h5>
+						<div className="col-6 col-md-4">
+							<h5>Certified</h5>
 							<ul>
 								{experience.map((prev, i) => {
 									return <li key={i}>{prev}</li>;
 								})}
 							</ul>
 						</div>
-						<div className="col-4">
+						<div className="col-6 col-md-4">
 							<h5>Specialties</h5>
 							<ul>
 								{specialties.map((prev, i) => {
@@ -57,7 +57,7 @@ const CoachDetail = ({ detail, setDetail }) => {
 								})}
 							</ul>
 						</div>
-						<div className="col-4">
+						<div className="col-6 col-md-4">
 							<h5>Interests</h5>
 							<ul>
 								{loves.map((prev, i) => {
@@ -68,7 +68,7 @@ const CoachDetail = ({ detail, setDetail }) => {
 
 						<div className="mt-4">
 							<h5>About {nameBreak[0]}</h5>
-							<p dangerouslySetInnerHTML={{ __html: description }}></p>
+							<div dangerouslySetInnerHTML={{ __html: description }}></div>
 						</div>
 					</div>
 				</div>

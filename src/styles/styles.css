@@ -395,10 +395,26 @@ body {
 }
 
 .pop-up-container .inner-pop-up {
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+  overflow-x: hidden;
   background-color: #fff;
   min-width: 900px;
   max-width: 500px;
   border-radius: 20px;
+}
+
+.pop-up-container .inner-pop-up::-webkit-scrollbar {
+  width: 7px;
+}
+
+.pop-up-container .inner-pop-up::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.pop-up-container .inner-pop-up::-webkit-scrollbar-thumb {
+  background: rgba(51, 209, 138, 0.603);
+  border-radius: 10px;
 }
 
 .pop-up-container .inner-pop-up .cross {
