@@ -3,7 +3,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./styles/styles.css";
 import { useEffect, useState } from "react";
 import { BiLeftArrowAlt } from "react-icons/bi";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import CountUp from "react-countup";
 
 // IMPORTING ANIMATIONS
@@ -22,9 +22,11 @@ import { selectedOptionsFunc } from "./redux/action";
 // QUESTION
 import QuestionStep from "./components/QuestionStep";
 import CoachesResults from "./components/CoachesResults";
+import PopUp from "./components/PopUp";
 
 function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 	const navigate = useNavigate();
+	const location = useLocation();
 
 	// GETTING LOCATION
 	let storedLocation = JSON.parse(localStorage.getItem("storedLocation"));
@@ -150,6 +152,8 @@ function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 	const onEnd = () => {
 		setLoading(false);
 		setShowResults(true);
+
+		navigate("/?id='49739773'", { replace: true });
 	};
 	const containerProps = {
 		"aria-busy": loading,
@@ -256,6 +260,9 @@ function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 					)}
 				</>
 			)}
+
+			{/* POP-UP */}
+			{location.search && <PopUp />}
 		</>
 	);
 }
