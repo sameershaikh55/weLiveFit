@@ -28,7 +28,7 @@ const PopUp = () => {
 	};
 
 	return (
-		<div data-aos="fade" className="pop-up-container">
+		<div data-aos="fade" className="pop-up-container form-popup">
 			<div className="inner-pop-up radius">
 				<div className="container-fluid">
 					<form

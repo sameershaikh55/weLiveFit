@@ -484,7 +484,7 @@ body {
   }
 }
 
-.pop-up-container {
+.pop-up-container.form-popup {
   position: fixed;
   left: 0%;
   right: 0%;
@@ -504,28 +504,28 @@ body {
   z-index: 10;
 }
 
-.pop-up-container .inner-pop-up {
+.pop-up-container.form-popup .inner-pop-up {
   background-color: #fff;
   min-width: 500px;
   max-width: 500px;
 }
 
-.pop-up-container .pop-up-body {
+.pop-up-container.form-popup .pop-up-body {
   padding: 2rem;
 }
 
-.pop-up-container .pop-up-body input {
+.pop-up-container.form-popup .pop-up-body input {
   height: 44px;
   border-radius: 6px;
   padding: 0rem 1rem;
   border: 1px solid #000;
 }
 
-.pop-up-container .pop-up-body input:focus {
+.pop-up-container.form-popup .pop-up-body input:focus {
   outline: none;
 }
 
-.pop-up-container .pop-up-body button {
+.pop-up-container.form-popup .pop-up-body button {
   background: linear-gradient(125deg, #24a6a89a 17%, rgba(51, 209, 138, 0.603) 100%);
   margin: 0.6rem 0rem;
   padding: 0.3rem 0rem;
@@ -535,7 +535,7 @@ body {
   height: 40px;
 }
 
-.pop-up-container .error_field {
+.pop-up-container.form-popup .error_field {
   border: 2px solid #dc3545 !important;
 }
 
