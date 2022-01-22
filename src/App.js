@@ -71,6 +71,7 @@ function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 				options={questionsData[i].options}
 				category={questionsData[i].category}
 				hint={questionsData[i].hint}
+				nextFunc={nextFunc}
 			/>
 		);
 	}
@@ -100,8 +101,8 @@ function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 		localStorage.setItem("currentStep", JSON.stringify(updatedStep));
 	};
 
-	function nextFunc(data) {
-		if (selectedOption.length) {
+	function nextFunc(data, isSingle) {
+		if (isSingle || selectedOption.length) {
 			selectedOptionsFunc(data);
 			setSelectedOption([]);
 		}
@@ -177,10 +178,10 @@ function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 						{/* LOGO END */}
 
 						{/* FORM CONTAINER START */}
-						<div className="form_inner_container">
+						<div className="form_inner_container container-fluid">
 							{/* STEPPER HEADER START */}
 							{step !== 1 && (
-								<div className="stepper_header row gx-5 align-items-center">
+								<div className="stepper_header row gx-md-5 align-items-center">
 									<button onClick={previousFunc} className="col-2">
 										Prev
 									</button>
@@ -203,7 +204,7 @@ function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 									{(selectedOption.length && (
 										<button
 											data-aos="fade-left"
-											onClick={() => nextFunc(selectedOption)}
+											onClick={() => nextFunc(selectedOption, false)}
 											className="col-2"
 										>
 											Next
@@ -226,12 +227,14 @@ function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 				<>
 					{(showResults && (
 						<div className="results_container py-5">
-							<button
-								onClick={goBackFunc}
-								className="border-0 rounded-pill py-2 text-white themeBtn px-4 d-flex justify-content-center align-items-center"
-							>
-								<BiLeftArrowAlt /> Back
-							</button>
+							<div className="container-fluid">
+								<button
+									onClick={goBackFunc}
+									className="border-0 rounded-pill py-2 text-white themeBtn px-4 d-flex justify-content-center align-items-center"
+								>
+									<BiLeftArrowAlt /> Back
+								</button>
+							</div>
 							<h2 className="text-center mb-4 mt-4">
 								Here are your recommended coaches.
 							</h2>

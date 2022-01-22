@@ -12,11 +12,13 @@ const QuestionStep = ({
 	hint,
 	selectedOptions,
 	id,
+	nextFunc,
 }) => {
 	let selectedData = JSON.parse(localStorage.getItem("selectedData"));
 
 	function selectedOptionFunc(option) {
 		setSelectedOption([option]);
+		nextFunc([option], true);
 	}
 
 	function selectedMultiOptionFunc(option) {
@@ -49,7 +51,7 @@ const QuestionStep = ({
 	}
 
 	return (
-		<div className="mt-5">
+		<div data-aos="fade" className="mt-5">
 			<h5>{question}</h5>
 			<p className="f14">{hint}</p>
 

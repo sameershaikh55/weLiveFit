@@ -213,7 +213,7 @@ body {
 	height: calc(100vh - 40px);
 
 	.logo_container {
-		position: absolute;
+		position: fixed;
 		top: 1rem;
 		left: 1rem;
 		height: 70px;
@@ -221,9 +221,22 @@ body {
 	}
 
 	.form_inner_container {
-		max-width: 500px;
+		max-width: 550px;
+		padding: 0rem 2rem;
+		width: 100%;
 		margin-left: auto;
 		margin-right: auto;
+
+		&::-webkit-scrollbar {
+			width: 7px;
+		}
+		&::-webkit-scrollbar-track {
+			background: #f1f1f1;
+		}
+		&::-webkit-scrollbar-thumb {
+			background: linear-gradient(125deg, #24a6a8 17%, rgb(51, 209, 137) 100%);
+			border-radius: 10px;
+		}
 
 		.stepper_header {
 			.progress {
@@ -585,6 +598,29 @@ body {
 		.inner-pop-up {
 			max-height: 500px;
 			overflow: auto;
+		}
+	}
+	.pop-up-container.form-popup .inner-pop-up {
+		min-width: 1px;
+	}
+}
+
+@media screen and (max-height: 700px) {
+	.form_container {
+		.form_inner_container {
+			max-height: 500px;
+			overflow-y: auto;
+			overflow-x: hidden;
+		}
+	}
+}
+
+@media screen and (max-height: 600px) {
+	.form_container {
+		.form_inner_container {
+			max-height: 400px;
+			overflow-y: auto;
+			overflow-x: hidden;
 		}
 	}
 }
