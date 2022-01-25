@@ -61,6 +61,7 @@ function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 	// STEPS DATA
 	const stepsData = [<StepOne nextFunc={nextFunc} />];
 
+	// MAKING QUESTIONS
 	for (let i = 0; i < questionsData.length; i++) {
 		stepsData.push(
 			<QuestionStep
@@ -78,6 +79,8 @@ function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 
 	const totalSteps = stepsData.length;
 	let perStepPercentage = 100 / totalSteps;
+
+	// STEPS STATE
 	const [currentStep, setCurrentStep] = useState({
 		precentage: 0,
 		step: 1,
@@ -88,6 +91,7 @@ function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 	const { step, precentage } =
 		(activeStep !== null && activeStep) || currentStep;
 
+	// TO GO BACK
 	const previousFunc = () => {
 		setSelectedOption(selectedOptions);
 
@@ -101,6 +105,7 @@ function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 		localStorage.setItem("currentStep", JSON.stringify(updatedStep));
 	};
 
+	// TO MOVE FORWARD
 	function nextFunc(data, isSingle) {
 		if (isSingle || selectedOption.length) {
 			selectedOptionsFunc(data);
@@ -139,6 +144,7 @@ function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 
 	let orderedCoaches = JSON.parse(localStorage.getItem("orderedCoaches"));
 
+	// TO MOVE BACK ALL OVER END TO START
 	function goBackFunc() {
 		window.location.reload(false);
 		navigate("/", { replace: true });
@@ -182,9 +188,11 @@ function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 							{/* STEPPER HEADER START */}
 							{step !== 1 && (
 								<div className="stepper_header row gx-md-5 align-items-center">
+									{/* PREV */}
 									<button onClick={previousFunc} className="col-2">
 										Prev
 									</button>
+									{/* PREV */}
 									<div className="col-8">
 										<div
 											className="progress"
@@ -201,6 +209,7 @@ function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 											></span>
 										</div>
 									</div>
+									{/* NEXT */}
 									{(selectedOption.length && (
 										<button
 											data-aos="fade-left"
@@ -211,6 +220,7 @@ function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 										</button>
 									)) ||
 										""}
+									{/* NEXT */}
 								</div>
 							)}
 							<div className="form_body mt-4">
@@ -238,6 +248,7 @@ function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 							<h2 className="text-center mb-4 mt-4">
 								Here are your recommended coaches.
 							</h2>
+							{/* Coaches Results */}
 							<CoachesResults
 								orderedCoaches={
 									(loadMore && orderedCoaches) || orderedCoaches.slice(0, 3)
@@ -259,6 +270,7 @@ function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 							<h2 className="text-center">
 								Hold tight, we're finding your <br /> perfect coach!
 							</h2>
+							{/* COUNTER */}
 							<CountUp
 								end={100}
 								duration="5"

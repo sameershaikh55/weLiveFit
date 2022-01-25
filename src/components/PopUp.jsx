@@ -50,7 +50,6 @@ const PopUp = () => {
 								placeholder="First name"
 								{...register("firstName", {
 									required: "Required*",
-									minLength: { value: 3, message: "Insufficient length*" },
 									pattern: {
 										value: /^[A-Za-z]+$/i,
 										message: "Invalid Name*",
@@ -72,7 +71,6 @@ const PopUp = () => {
 								placeholder="Last name"
 								{...register("lastName", {
 									required: "Required*",
-									minLength: { value: 3, message: "Insufficient length*" },
 									pattern: {
 										value: /^[A-Za-z]+$/i,
 										message: "Invalid Name*",

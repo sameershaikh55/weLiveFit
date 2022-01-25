@@ -22,11 +22,12 @@ const QuestionStep = ({
 	}
 
 	function selectedMultiOptionFunc(option) {
-		let filteredData = selectedOption.filter((item) => {
-			let filterEntries = selectedOption.filter((item2) => {
-				return item2.id === option.id;
-			});
-			return option.option === filterEntries[0].option;
+		let filterEntries = selectedOption.filter((item2) => {
+			return item2.id === option.id;
+		});
+
+		let filteredData = filterEntries.filter((item) => {
+			return option.option === item.option;
 		});
 
 		if (filteredData.length) {
