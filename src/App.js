@@ -53,7 +53,9 @@ function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 			setCoaches(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
 		};
 
-		getUsers();
+		if (!coaches.length) {
+			getUsers();
+		}
 	}, []); // empty dependencies array => useEffect only called once
 
 	let activeStep = JSON.parse(localStorage.getItem("currentStep"));
@@ -106,6 +108,34 @@ function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 	};
 
 	// TO MOVE FORWARD
+	function coachSorting(data) {
+		let genderIndex = selectedData.filter((item) => item.id === "7");
+
+		let maleCoaches = [],
+			femaleCoaches = [];
+
+		for (let i = 0; i < data.length; i++) {
+			if (data[i].gender === "male") {
+				maleCoaches.push(data[i]);
+			} else if (data[i].gender === "female") {
+				femaleCoaches.push(data[i]);
+			}
+		}
+
+		return (
+			(genderIndex[0].option === "Male" && [
+				...maleCoaches,
+				...femaleCoaches,
+			]) ||
+			(genderIndex[0].option === "Female" && [
+				...femaleCoaches,
+				...maleCoaches,
+			]) ||
+			data
+		);
+	}
+
+	// TO MOVE FORWARD
 	function nextFunc(data, isSingle) {
 		if (isSingle || selectedOption.length) {
 			selectedOptionsFunc(data);
@@ -137,9 +167,12 @@ function App({ questionsData, selectedOptionsFunc, selectedOptions }) {
 			coaches.push((coaches[i].specializations = orderedCoaches));
 			coaches.pop();
 		}
+
 		coaches.sort((a, b) => b.specializations.length - a.specializations.length);
 
-		localStorage.setItem("orderedCoaches", JSON.stringify(coaches));
+		const filteredCoaches = coachSorting(coaches);
+
+		localStorage.setItem("orderedCoaches", JSON.stringify(filteredCoaches));
 	}
 
 	let orderedCoaches = JSON.parse(localStorage.getItem("orderedCoaches"));
